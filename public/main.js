@@ -71,7 +71,7 @@ document.addEventListener('click', async ev => {
     const counter = parseInt(document.getElementById('request-count').value, 10);
     const average = await makeRequests(type, counter);
 
-    setStatus(`Making ${counter} request(s) took an average of ${average}ms`);
+    setStatus(`Making ${counter} request(s) took ${average}ms`);
   }
 
   if(request === 'timed') {

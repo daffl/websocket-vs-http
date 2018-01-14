@@ -17,6 +17,7 @@ const apps = {
 async function makeRequests (type = 'rest', times = 1) {
   const app = apps[type]();
   const promises = [];
+  const start = new Date().getTime();
 
   for (let i = 0; i < times; i++) {
     promises.push(app.service('messages').create({
@@ -24,27 +25,13 @@ async function makeRequests (type = 'rest', times = 1) {
     }));
   }
 
-  const results = await Promise.all(promises);
+  await Promise.all(promises);
 
   if (app.io) {
     app.io.close();
   }
 
-  return results;
-}
-
-async function benchmarkAverage (callback, times = 10) {
-  let sum = 0;
-
-  for (let i = 0; i < times; i++) {
-    const start = new Date().getTime();
-
-    await callback();
-
-    sum += new Date().getTime() - start;
-  }
-  
-  return sum / times;
+  return new Date().getTime() - start;
 }
 
 async function runTimed (type = 'rest', time = 10000) {
@@ -82,7 +69,7 @@ document.addEventListener('click', async ev => {
     setStatus('Running request count benchmark...');
 
     const counter = parseInt(document.getElementById('request-count').value, 10);
-    const average = await benchmarkAverage(() => makeRequests(type, counter));
+    const average = await makeRequests(type, counter);
 
     setStatus(`Making ${counter} request(s) took an average of ${average}ms`);
   }

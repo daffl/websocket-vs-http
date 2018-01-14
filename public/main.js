@@ -24,7 +24,13 @@ async function makeRequests (type = 'rest', times = 1) {
     }));
   }
 
-  return Promise.all(promises);
+  const results = await Promise.all(promises);
+
+  if (app.io) {
+    app.io.close();
+  }
+
+  return results;
 }
 
 async function benchmarkAverage (callback, times = 10) {
@@ -55,6 +61,10 @@ async function runTimed (type = 'rest', time = 10000) {
     });
 
     counter++;
+  }
+
+  if (app.io) {
+    app.io.close();
   }
 
   return counter;

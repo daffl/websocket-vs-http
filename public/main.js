@@ -25,9 +25,7 @@ async function makeRequests (type = 'rest', times = 1) {
   const start = new Date().getTime();
 
   for (let i = 0; i < times; i++) {
-    promises.push(app.service('messages').create({
-      text: `makeRequests * ${times} call`
-    }));
+    promises.push(app.service('messages').get('test'));
   }
 
   await Promise.all(promises);
@@ -44,9 +42,7 @@ async function runTimed (type = 'rest', time = 10000) {
   setTimeout(() => (running = false), time);
 
   while (running) {
-    await app.service('messages').create({
-      text: `runTimed ${time}ms call`
-    });
+    await app.service('messages').get('test');
 
     counter++;
   }

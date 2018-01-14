@@ -1,9 +1,8 @@
+const socket = io({
+  transports: [ 'websocket' ]
+});
 const apps = {
   socketio() {
-    const socket = io({
-      transports: [ 'websocket' ]
-    });
-    
     return feathers().configure(feathers.socketio(socket));
   },
 
@@ -27,10 +26,6 @@ async function makeRequests (type = 'rest', times = 1) {
 
   await Promise.all(promises);
 
-  if (app.io) {
-    app.io.close();
-  }
-
   return new Date().getTime() - start;
 }
 
@@ -49,11 +44,7 @@ async function runTimed (type = 'rest', time = 10000) {
 
     counter++;
   }
-
-  if (app.io) {
-    app.io.close();
-  }
-
+  
   return counter;
 }
 

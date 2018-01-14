@@ -1,6 +1,12 @@
+const connectStart = new Date().getTime();
 const socket = io({
   transports: [ 'websocket' ]
 });
+
+socket.once('connect', () => {
+  console.log(`Time to connection: ${new Date().getTime() - connectStart}ms`);
+});
+
 const apps = {
   socketio() {
     return feathers().configure(feathers.socketio(socket));
@@ -44,7 +50,7 @@ async function runTimed (type = 'rest', time = 10000) {
 
     counter++;
   }
-  
+
   return counter;
 }
 

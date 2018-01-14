@@ -1,0 +1,26 @@
+{
+  "name": "websocket-vs-http",
+  "version": "1.0.0",
+  "description": "REST HTTP vs Websockets: A performance comparison",
+  "main": "index.js",
+  "scripts": {
+    "start": "node lib/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daffl/websocket-vs-http.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daffl/websocket-vs-http/issues"
+  },
+  "homepage": "https://github.com/daffl/websocket-vs-http#readme",
+  "dependencies": {
+    "@feathersjs/express": "^1.1.2",
+    "@feathersjs/feathers": "^3.0.5",
+    "@feathersjs/socketio": "^3.0.2"
+  }
+}

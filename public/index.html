@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Feathers websocket vs HTTP benchmark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//cdn.rawgit.com/feathersjs/feathers-chat/v0.2.0/public/base.css">
+  <link rel="stylesheet" href="//cdn.rawgit.com/feathersjs/feathers-chat/v0.2.0/public/chat.css">
+</head>
+<body>
+  <style>
+    body { margin: 40px; }
+  </style>
+  <div id="app">
+    <h1>Feathers Websocket vs HTTP benchmarks</h1>
+
+    <pre id="status">Ready to run benchmark</pre>
+    
+    <h2>Fixed number of requests</h2>
+    <p>
+      <label>Number of requests: &nbsp;</label>
+      <input type="number" id="request-count" value="1">
+    </p>
+    <button class="button button-primary no-requests" data-type="socketio" data-request="count">
+      Socket.io
+    </button>
+    <button class="button button-primary" data-type="rest" data-request="count">
+      HTTP REST
+    </button>
+
+    <h2>Timed requests</h2>
+    <p>
+      <label>Time to run (in seconds): &nbsp;</label>
+      <input type="number" id="request-timer" value="10">
+    </p>
+    <button class="button button-primary no-requests" data-type="socketio" data-request="timed">
+      Socket.io
+    </button>
+    <button class="button button-primary" data-type="rest" data-request="timed">
+      HTTP REST
+    </button>  
+  </div>
+
+  <script src="//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js"></script>
+  <script src="socket.io/socket.io.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

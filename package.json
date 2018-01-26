@@ -4,6 +4,9 @@
   "description": "REST HTTP vs Websockets: A performance comparison",
   "main": "index.js",
   "scripts": {
+    "benchmark": "npm run autocannon && npm run websocket-bench",
+    "autocannon": "time autocannon -l -H \"Content-Type=application/json\" -a 10000 -c 100 http://localhost:3030/messages/test",
+    "websocket-bench": "time websocket-bench -a 100 -m 100 -c 100 -g lib/websocket-bench.js http://localhost:3030",
     "start": "node lib/app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,5 +25,9 @@
     "@feathersjs/express": "^1.1.2",
     "@feathersjs/feathers": "^3.0.5",
     "@feathersjs/socketio": "^3.0.2"
+  },
+  "devDependencies": {
+    "autocannon": "^0.16.5",
+    "websocket-bench": "^0.2.0"
   }
 }

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "benchmark": "npm run autocannon && npm run websocket-bench",
+    "autocannon-auth": "time autocannon -l -H \"Content-Type=application/json\" -H \"Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6ImFjY2VzcyJ9.eyJ1c2VySWQiOiJ0ZXN0IiwiaWF0IjoxNTM2MjEwMTk0LCJleHAiOjE1MzYyOTY1OTQsImF1ZCI6Imh0dHBzOi8veW91cmRvbWFpbi5jb20iLCJpc3MiOiJmZWF0aGVycyIsInN1YiI6ImFub255bW91cyIsImp0aSI6ImJiNmUyMzdlLTc5NzgtNGE4OC05N2VmLWJiM2Q4ZTY3N2YyMCJ9.EY8kSGvcFTSrBm5ubpLhMP6mJ0x_ZeCF82bojjmjZUg\" -a 10000 -c 100 http://localhost:3030/messages/test",
     "autocannon": "time autocannon -l -H \"Content-Type=application/json\" -a 10000 -c 100 http://localhost:3030/messages/test",
     "websocket-bench": "time websocket-bench -a 100 -m 100 -c 100 -g lib/websocket-bench.js http://localhost:3030",
     "start": "node lib/app",
@@ -22,12 +23,14 @@
   },
   "homepage": "https://github.com/daffl/websocket-vs-http#readme",
   "dependencies": {
-    "@feathersjs/express": "^1.1.2",
-    "@feathersjs/feathers": "^3.0.5",
-    "@feathersjs/socketio": "^3.0.2"
+    "@feathersjs/authentication": "^2.1.9",
+    "@feathersjs/authentication-jwt": "^2.0.3",
+    "@feathersjs/express": "^1.2.5",
+    "@feathersjs/feathers": "^3.2.1",
+    "@feathersjs/socketio": "^3.2.4"
   },
   "devDependencies": {
-    "autocannon": "^0.16.5",
+    "autocannon": "^2.4.1",
     "websocket-bench": "^0.2.0"
   }
 }
